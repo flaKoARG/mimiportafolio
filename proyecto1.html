@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de E-Commerce - Proyecto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(62, 45, 38, 0.95), rgba(80, 60, 50, 0.95));
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(139, 111, 71, 0.2);
+            color: #d4a574;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 1px solid rgba(139, 111, 71, 0.3);
+            transition: all 0.3s ease;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(139, 111, 71, 0.4);
+            transform: translateX(-5px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: #d4a574;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #d4a574;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: rgba(139, 111, 71, 0.2);
+            color: #d4a574;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(139, 111, 71, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card {
+            background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(32, 32, 32, 0.9));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 111, 71, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 111, 71, 0.3);
+        }
+
+        .info-card h3 {
+            color: #8b6f47;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .info-card p {
+            color: #d4a574;
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(32, 32, 32, 0.9));
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(139, 111, 71, 0.15);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section h2 {
+            color: #d4a574;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b6f47, #d4a574);
+            border-radius: 2px;
+        }
+
+        .content-section h3 {
+            color: #8b6f47;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .content-section p {
+            color: #b8b8b8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .content-section ul li {
+            color: #b8b8b8;
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .content-section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #d4a574;
+            font-size: 1.2rem;
+        }
+
+        /* Technologies */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(139, 111, 71, 0.15), rgba(139, 111, 71, 0.25));
+            color: #d4a574;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(139, 111, 71, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-tag:hover {
+            background: linear-gradient(135deg, rgba(139, 111, 71, 0.3), rgba(139, 111, 71, 0.4));
+            transform: translateY(-3px);
+        }
+
+        /* Image Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+            border: 1px solid rgba(139, 111, 71, 0.15);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(139, 111, 71, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #8b6f47;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #d4a574;
+            padding: 1.5rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Links Section */
+        .links-section {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, rgba(139, 111, 71, 0.2), rgba(139, 111, 71, 0.3));
+            color: #d4a574;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 1px solid rgba(139, 111, 71, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .project-link.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-link:hover {
+            background: linear-gradient(135deg, rgba(139, 111, 71, 0.4), rgba(139, 111, 71, 0.5));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 111, 71, 0.2);
+        }
+
+        .project-link::before {
+            content: '🔗';
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(62, 45, 38, 0.95), rgba(80, 60, 50, 0.95));
+            color: #b8b8b8;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .back-btn {
+                position: static;
+                display: inline-block;
+                margin-bottom: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-btn">← Volver al Portafolio</a>
+        <div class="project-icon">🎨</div>
+        <h1>Plataforma de E-Commerce</h1>
+        <span class="project-category">Desarrollo Web Full Stack</span>
+        <div class="scroll-indicator" onclick="document.querySelector('.container').scrollIntoView({behavior: 'smooth'})"></div>
+    </header>
+
+    <div class="container">
+        <!-- Info Cards -->
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Duración</h3>
+                <p>6 meses</p>
+            </div>
+            <div class="info-card">
+                <h3>Rol</h3>
+                <p>Full Stack Developer</p>
+            </div>
+            <div class="info-card">
+                <h3>Estado</h3>
+                <p>95% Completado</p>
+            </div>
+            <div class="info-card">
+                <h3>Equipo</h3>
+                <p>4 personas</p>
+            </div>
+        </div>
+
+        <!-- Descripción del Proyecto -->
+        <div class="content-section">
+            <h2>Descripción del Proyecto</h2>
+            <p>
+                Este proyecto nació de la necesidad de crear una plataforma de comercio electrónico moderna y escalable para una cadena de tiendas locales que buscaba expandir su presencia digital. El objetivo principal era desarrollar una solución completa que integrara gestión de inventario, procesamiento de pagos seguros y una experiencia de usuario fluida.
+            </p>
+            <p>
+                La plataforma permite a los usuarios navegar por catálogos de productos, añadir artículos al carrito, realizar pagos seguros mediante múltiples métodos, y hacer seguimiento de sus pedidos en tiempo real. Además, incluye un panel de administración completo para la gestión de productos, pedidos y análisis de ventas.
+            </p>
+
+            <h3>Tecnologías Utilizadas</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Redux</span>
+                <span class="tech-tag">Stripe API</span>
+                <span class="tech-tag">JWT Auth</span>
+                <span class="tech-tag">AWS S3</span>
+            </div>
+        </div>
+
+        <!-- Mi Experiencia -->
+        <div class="content-section">
+            <h2>Mi Experiencia y Proceso</h2>
+            
+            <h3>Fase 1: Investigación y Planificación</h3>
+            <p>
+                Comencé el proyecto realizando un análisis exhaustivo de las necesidades del cliente. Durante dos semanas, me dediqué a entender el flujo de trabajo de sus tiendas físicas, identificar puntos de dolor en su proceso de ventas actual, y estudiar a la competencia. Esta fase fue crucial para definir los requisitos técnicos y funcionales del proyecto.
+            </p>
+
+            <h3>Fase 2: Diseño de Arquitectura</h3>
+            <p>
+                Diseñé una arquitectura de microservicios que separa claramente el frontend del backend, permitiendo escalabilidad y mantenimiento más sencillo. Opté por MongoDB por su flexibilidad para manejar catálogos de productos con diferentes atributos, y implementé una API RESTful robusta con Node.js y Express.
+            </p>
+            <p>
+                Uno de los desafíos más interesantes fue diseñar el sistema de gestión de inventario en tiempo real. Implementé un sistema de eventos con WebSockets que notifica instantáneamente cuando un producto está por agotarse, evitando sobreventa.
+            </p>
+
+            <h3>Fase 3: Desarrollo Frontend</h3>
+            <p>
+                Utilicé React.js para construir una interfaz moderna y responsive. Implementé Redux para el manejo del estado global, lo que facilitó enormemente la sincronización entre el carrito de compras, el inventario y las preferencias del usuario. La experiencia de usuario fue mi prioridad: cada interacción está optimizada para ser intuitiva y rápida.
+            </p>
+
+            <h3>Fase 4: Integración de Pagos</h3>
+            <p>
+                La integración con Stripe fue uno de los aspectos más críticos. Implementé un flujo de pago seguro con validación en múltiples capas, manejo de errores robusto, y soporte para diferentes métodos de pago. También agregué un sistema de webhooks para actualizar automáticamente el estado de los pedidos.
+            </p>
+
+            <h3>Desafíos Superados</h3>
+            <ul>
+                <li><strong>Optimización de rendimiento:</strong> Implementé lazy loading, code splitting y caché estratégico para reducir el tiempo de carga en un 60%.</li>
+                <li><strong>Seguridad:</strong> Implementé autenticación JWT, encriptación de datos sensibles, y protección contra ataques comunes (XSS, CSRF, SQL Injection).</li>
+                <li><strong>Gestión de imágenes:</strong> Integré AWS S3 para almacenar imágenes de productos, con compresión automática y generación de thumbnails.</li>
+                <li><strong>Testing:</strong> Desarrollé una suite completa de tests unitarios y de integración con Jest y Supertest, alcanzando 85% de cobertura.</li>
+            </ul>
+
+            <h3>Aprendizajes Clave</h3>
+            <p>
+                Este proyecto me enseñó la importancia de la planificación meticulosa en aplicaciones complejas. Aprendí a balancear entre la perfección técnica y las necesidades reales del negocio, priorizando features según su impacto. La comunicación constante con el cliente fue fundamental para ajustar expectativas y entregar un producto que realmente resolviera sus problemas.
+            </p>
+        </div>
+
+        <!-- Gallery -->
+        <div class="content-section">
+            <h2>Capturas del Proyecto</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🖼️</div>
+                    <div class="gallery-caption">Página principal con catálogo de productos</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🛒</div>
+                    <div class="gallery-caption">Carrito de compras interactivo</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">💳</div>
+                    <div class="gallery-caption">Proceso de checkout seguro</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">📊</div>
+                    <div class="gallery-caption">Panel de administración</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">📱</div>
+                    <div class="gallery-caption">Versión móvil responsive</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🔍</div>
+                    <div class="gallery-caption">Sistema de búsqueda y filtros</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div class="content-section">
+            <h2>Enlaces del Proyecto</h2>
+            <div class="links-section">
+                <a href="https://tu-proyecto-demo.com" target="_blank" class="project-link">
+                    Ver Demo en Vivo
+                </a>
+                <a href="https://github.com/tu-usuario/proyecto" target="_blank" class="project-link">
+                    Código en GitHub
+                </a>
+                <a href="https://tu-documentacion.com" target="_blank" class="project-link">
+                    Documentación
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mi Portafolio. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer para animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar secciones de contenido
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observar items de galería con delay escalonado
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Observar enlaces con delay escalonado
+        document.querySelectorAll('.project-link').forEach((link, index) => {
+            link.style.transitionDelay = `${index * 0.15}s`;
+            observer.observe(link);
+        });
+    </script>
+</body>
+</html>
