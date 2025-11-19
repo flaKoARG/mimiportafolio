@@ -17,7 +17,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1f 100%);
             color: #e0e0e0;
             line-height: 1.6;
             overflow-x: hidden;
@@ -27,7 +27,7 @@
             background: linear-gradient(135deg, rgba(57, 6, 73, 0.95), rgba(41, 15, 75, 0.95));
             padding: 4rem 2rem;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(139, 48, 98, 0.5);
             position: relative;
             overflow: hidden;
         }
@@ -39,7 +39,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(57, 6, 73, 0.95), 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 48, 98, 0.2) 0%, transparent 70%);
             animation: pulse 15s infinite;
         }
 
@@ -50,17 +50,18 @@
 
         header h1 {
             font-size: 3rem;
-            color: #d4a574;
+            color: #e891c3;
             margin-bottom: 0.5rem;
             font-weight: 300;
             letter-spacing: 4px;
             position: relative;
             z-index: 1;
             text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(139, 48, 98, 0.5);
         }
 
         header p {
-            color: #b8b8b8;
+            color: #c8a2d0;
             font-size: 1.2rem;
             font-weight: 300;
             position: relative;
@@ -80,7 +81,7 @@
         .scroll-indicator::before {
             content: '↓';
             font-size: 2rem;
-            color: #d4a574;
+            color: #e891c3;
         }
 
         @keyframes bounce {
@@ -111,15 +112,16 @@
         }
 
         .intro h2 {
-            color: #d4a574;
+            color: #e891c3;
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             font-weight: 300;
             letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(139, 48, 98, 0.3);
         }
 
         .intro p {
-            color: #b8b8b8;
+            color: #c8a2d0;
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
@@ -134,11 +136,11 @@
         }
 
         .project-card {
-            background: linear-gradient(145deg, rgba(41, 15, 75, 0.95), rgba(32, 32, 32, 0.9));
+            background: linear-gradient(145deg, rgba(57, 6, 73, 0.6), rgba(41, 15, 75, 0.8));
             border-radius: 20px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(41, 15, 75, 0.95);
+            border: 1px solid rgba(139, 48, 98, 0.3);
             cursor: pointer;
             text-decoration: none;
             display: block;
@@ -147,6 +149,7 @@
             opacity: 0;
             transform: translateY(50px);
             animation: fadeInUp 0.6s ease forwards;
+            backdrop-filter: blur(10px);
         }
 
         .project-card:nth-child(1) { animation-delay: 0.1s; }
@@ -164,7 +167,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #8b6f47, #d4a574, #8b6f47);
+            background: linear-gradient(90deg, #8b3062, #e891c3, #8b3062);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
@@ -175,18 +178,18 @@
 
         .project-card:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 165, 116, 0.3);
-            border-color: rgba(41, 15, 75, 0.95);
+            box-shadow: 0 20px 40px rgba(139, 48, 98, 0.4), 0 0 0 1px rgba(232, 145, 195, 0.5);
+            border-color: rgba(139, 48, 98, 0.6);
         }
 
         .project-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+            background: linear-gradient(135deg, rgba(57, 6, 73, 0.9) 0%, rgba(41, 15, 75, 0.9) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #8b6f47;
+            color: #e891c3;
             font-size: 4rem;
             position: relative;
             overflow: hidden;
@@ -199,7 +202,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(232, 145, 195, 0.3), transparent);
             transition: left 0.6s ease;
         }
 
@@ -209,11 +212,11 @@
 
         .project-content {
             padding: 2rem;
-            background: linear-gradient(to bottom, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
+            background: linear-gradient(to bottom, rgba(20, 10, 30, 0.9), rgba(10, 5, 15, 0.95));
         }
 
         .project-content h3 {
-            color: #d4a574;
+            color: #e891c3;
             margin-bottom: 1rem;
             font-size: 1.5rem;
             font-weight: 400;
@@ -221,7 +224,7 @@
         }
 
         .project-content p {
-            color: #b8b8b8;
+            color: #c8a2d0;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
@@ -235,25 +238,26 @@
         }
 
         .tag {
-            background: linear-gradient(135deg, rgba(139, 111, 71, 0.15), rgba(139, 111, 71, 0.25));
-            color: #d4a574;
+            background: linear-gradient(135deg, rgba(139, 48, 98, 0.2), rgba(139, 48, 98, 0.35));
+            color: #e891c3;
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            border: 1px solid rgba(139, 111, 71, 0.3);
+            border: 1px solid rgba(139, 48, 98, 0.4);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
 
         .tag:hover {
-            background: linear-gradient(135deg, rgba(139, 111, 71, 0.3), rgba(139, 111, 71, 0.4));
+            background: linear-gradient(135deg, rgba(139, 48, 98, 0.4), rgba(139, 48, 98, 0.6));
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 48, 98, 0.3);
         }
 
         .progress-section {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(139, 111, 71, 0.2);
+            border-top: 1px solid rgba(139, 48, 98, 0.3);
         }
 
         .progress-header {
@@ -264,14 +268,14 @@
         }
 
         .progress-label {
-            color: #8b6f47;
+            color: #8b3062;
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
         }
 
         .progress-percentage {
-            color: #d4a574;
+            color: #e891c3;
             font-size: 1.1rem;
             font-weight: 700;
         }
@@ -279,7 +283,7 @@
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: rgba(139, 111, 71, 0.15);
+            background: rgba(139, 48, 98, 0.2);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
@@ -292,7 +296,7 @@
             left: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(232, 145, 195, 0.4), transparent);
             animation: shimmer 2s infinite;
         }
 
@@ -303,12 +307,12 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #8b6f47 0%, #d4a574 50%, #8b6f47 100%);
+            background: linear-gradient(90deg, #8b3062 0%, #e891c3 50%, #8b3062 100%);
             background-size: 200% 100%;
             border-radius: 10px;
             position: relative;
             animation: gradientMove 3s ease infinite;
-            box-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+            box-shadow: 0 0 15px rgba(232, 145, 195, 0.6);
         }
 
         @keyframes gradientMove {
@@ -317,8 +321,8 @@
         }
 
         footer {
-            background: linear-gradient(135deg, rgba(62, 45, 38, 0.95), rgba(80, 60, 50, 0.95));
-            color: #b8b8b8;
+            background: linear-gradient(135deg, rgba(57, 6, 73, 0.95), rgba(41, 15, 75, 0.95));
+            color: #c8a2d0;
             text-align: center;
             padding: 3rem;
             margin-top: 5rem;
@@ -332,7 +336,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+            background: linear-gradient(90deg, transparent, #e891c3, transparent);
         }
 
         footer p {
@@ -366,7 +370,7 @@
     <div class="container">
         <div class="intro">
             <h2>Proyectos Destacados</h2>
-            <p>Explora mis proyectos que realize en el año.</p>
+            <p>Explora mis proyectos que realicé en el año.</p>
         </div>
 
         <div class="projects-grid">
@@ -386,7 +390,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 95%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -408,7 +412,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 80%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -430,7 +434,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 65%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -452,7 +456,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 50%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -474,7 +478,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -496,7 +500,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 75%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
@@ -505,7 +509,7 @@
             <a href="proyecto7.html" rel="noopener noreferrer" class="project-card">
                 <div class="project-image">🎬</div>
                 <div class="project-content">
-                    <h3>Septimo Proyecto</h3>
+                    <h3>Séptimo Proyecto</h3>
                     <p>7mo Proyecto</p>
                     <div class="project-tags">
                         <span class="tag">Next.js</span>
@@ -518,7 +522,7 @@
                             <span class="progress-percentage">100%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 40%"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
